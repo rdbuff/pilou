@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pilou – ton petit compagnon pilule</title>
+<meta name="description" content="Pilou te rappelle ta pilule en douceur, chaque jour. Rappels tout doux, calendrier, médicaments et mots doux, dans une app toute mignonne.">
+<meta property="og:title" content="Pilou 💊💗">
+<meta property="og:description" content="Ton petit compagnon pilule : rappels tout doux, calendrier et mots doux.">
+<meta property="og:image" content="https://rdbuff.github.io/pilou/img/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ffd3e2">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --pink:#ff6b9e; --deep:#eb4582; --blush:#fff0f4; --text:#6b2c4c; --soft:#a86b8a; --card:rgba(255,255,255,.88); }
+  * { box-sizing:border-box; margin:0; }
+  html { -webkit-text-size-adjust:100%; }
+  body { min-height:100vh; background:linear-gradient(#fff0f4, #ffc4da) fixed; color:var(--text);
+         font-family:"M PLUS Rounded 1c", ui-rounded, -apple-system, system-ui, sans-serif; font-weight:700;
+         padding:16px 16px 40px; overflow-x:hidden; }
+  main { max-width:560px; margin:0 auto; text-align:center; }
+  .lang { display:flex; justify-content:flex-end; gap:6px; }
+  .lang button { border:0; background:var(--card); color:var(--deep); font:inherit; font-size:14px; padding:6px 12px;
+                 border-radius:99px; cursor:pointer; }
+  .lang button[aria-pressed="true"] { background:linear-gradient(135deg, var(--pink), var(--deep)); color:#fff; }
+  .mascot { width:min(62vw, 260px); margin:8px auto 0; display:block; border-radius:50%;
+            animation:bob 2.6s ease-in-out infinite; }
+  @keyframes bob { 50% { transform:translateY(-10px) rotate(-3deg); } }
+  h1 { font-size:46px; font-weight:800; margin-top:6px; letter-spacing:.5px; }
+  .tagline { font-size:19px; color:var(--soft); margin-top:4px; line-height:1.45; }
+  .cta { display:inline-flex; align-items:center; justify-content:center; gap:10px; margin-top:22px; width:100%; max-width:360px;
+         padding:18px 24px; border-radius:99px; border:0; font:inherit; font-size:20px; font-weight:800; color:#fff; text-decoration:none;
+         background:linear-gradient(135deg, var(--pink), var(--deep)); box-shadow:0 10px 26px rgba(235,69,130,.38);
+         animation:breathe 1.8s ease-in-out infinite; }
+  .cta.soon { animation:none; opacity:.92; cursor:default; }
+  @keyframes breathe { 50% { transform:scale(1.03); } }
+  .soon-note { font-size:14px; color:var(--soft); margin-top:10px; }
+  .features { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:30px; text-align:left; }
+  .feature { background:var(--card); border:2px solid #fff; border-radius:24px; padding:16px; box-shadow:0 8px 20px rgba(255,107,158,.14); }
+  .feature .e { font-size:28px; }
+  .feature h2 { font-size:16px; font-weight:800; margin-top:6px; }
+  .feature p { font-size:13px; color:var(--soft); margin-top:4px; line-height:1.4; font-weight:500; }
+  .gallery { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; margin:30px -16px 0; padding:6px 16px 16px;
+             -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .gallery::-webkit-scrollbar { display:none; }
+  .gallery img { width:62%; max-width:240px; flex:none; border-radius:22px; scroll-snap-align:center;
+                 box-shadow:0 10px 24px rgba(235,69,130,.22); }
+  footer { margin-top:30px; font-size:14px; color:var(--soft); line-height:2; }
+  footer a { color:var(--deep); text-decoration:none; margin:0 8px; white-space:nowrap; }
+  .disclaimer { font-size:12px; font-weight:500; margin-top:10px; line-height:1.5; }
+  @media (prefers-reduced-motion: reduce) { .mascot, .cta { animation:none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang">
+    <button type="button" data-lang="fr">FR</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+
+  <img class="mascot" src="img/pilou.png" alt="Pilou">
+  <h1>Pilou</h1>
+  <p class="tagline" data-t="tagline"></p>
+
+  <a class="cta" id="cta">
+    <span data-t="cta"></span>
+  </a>
+  <p class="soon-note" id="soon-note" data-t="soonNote"></p>
+
+  <section class="features">
+    <div class="feature"><div class="e">⏰</div><h2 data-t="f1t"></h2><p data-t="f1p"></p></div>
+    <div class="feature"><div class="e">🎉</div><h2 data-t="f2t"></h2><p data-t="f2p"></p></div>
+    <div class="feature"><div class="e">📅</div><h2 data-t="f3t"></h2><p data-t="f3p"></p></div>
+    <div class="feature"><div class="e">💊</div><h2 data-t="f4t"></h2><p data-t="f4p"></p></div>
+    <div class="feature"><div class="e">💌</div><h2 data-t="f5t"></h2><p data-t="f5p"></p></div>
+    <div class="feature"><div class="e">🎨</div><h2 data-t="f6t"></h2><p data-t="f6p"></p></div>
+  </section>
+
+  <div class="gallery" id="gallery"></div>
+
+  <footer>
+    <a href="https://rdbuff.github.io/piluke-app/privacy.html" data-t="privacy"></a>
+    <a href="https://rdbuff.github.io/piluke-app/terms.html" data-t="terms"></a>
+    <a href="mailto:pilousupport@gmail.com" data-t="contact"></a>
+    <p class="disclaimer" data-t="disclaimer"></p>
+  </footer>
+</main>
+
+<script>
+  // Put the App Store link here once Pilou is published, e.g. "https://apps.apple.com/app/id1234567890".
+  const APP_STORE_URL = "";
+
+  const text = {
+    fr: {
+      title: "Pilou – ton petit compagnon pilule",
+      tagline: "Ton petit compagnon pilule 💊💗<br>Il te la rappelle en douceur, chaque jour.",
+      cta: APP_STORE_URL ? "Télécharger sur l'App Store" : "Bientôt sur l'App Store",
+      soonNote: APP_STORE_URL ? "Gratuit sur iPhone 💗" : "Encore un tout petit peu de patience ✨",
+      f1t: "Rappels tout doux", f1p: "À ton heure, et Pilou te relance si tu oublies.",
+      f2t: "On fête chaque prise", f2p: "Cœurs, arcs-en-ciel et petits mots doux.",
+      f3t: "Ton mois en un coup d'œil", f3p: "Jours pris, oubliés ou de pause, et ta série.",
+      f4t: "Tes médicaments", f4p: "Vitamines et traitements, chacun à son heure.",
+      f5t: "Mots doux", f5p: "Des messages mignons à des heures surprises.",
+      f6t: "Plein de thèmes", f6p: "Ou crée tes propres couleurs.",
+      privacy: "Confidentialité", terms: "Conditions", contact: "Contact",
+      disclaimer: "Pilou est un outil de rappel et ne remplace pas l'avis d'un médecin ou d'un pharmacien."
+    },
+    en: {
+      title: "Pilou – your little pill buddy",
+      tagline: "Your little pill buddy 💊💗<br>It gently reminds you, every single day.",
+      cta: APP_STORE_URL ? "Download on the App Store" : "Coming soon to the App Store",
+      soonNote: APP_STORE_URL ? "Free on iPhone 💗" : "Just a tiny bit more patience ✨",
+      f1t: "Gentle reminders", f1p: "At your time, and Pilou nudges you again if you forget.",
+      f2t: "Every pill celebrated", f2p: "Hearts, rainbows and sweet little words.",
+      f3t: "Your month at a glance", f3p: "Taken, missed and break days, and your streak.",
+      f4t: "Your medications", f4p: "Vitamins and treatments, each at its own time.",
+      f5t: "Sweet notes", f5p: "Cute messages at surprise times.",
+      f6t: "So many themes", f6p: "Or create your very own colors.",
+      privacy: "Privacy", terms: "Terms", contact: "Contact",
+      disclaimer: "Pilou is a reminder tool and doesn't replace advice from a doctor or pharmacist."
+    }
+  };
+
+  const cta = document.getElementById("cta");
+  if (APP_STORE_URL) {
+    cta.href = APP_STORE_URL;
+  } else {
+    cta.classList.add("soon");
+    cta.setAttribute("aria-disabled", "true");
+  }
+
+  function setLang(lang) {
+    const t = text[lang];
+    document.documentElement.lang = lang;
+    document.title = t.title;
+    document.querySelectorAll("[data-t]").forEach(el => { el.innerHTML = t[el.dataset.t]; });
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+    document.getElementById("gallery").innerHTML =
+      [1, 2, 3, 4, 5, 6].map(i => `<img src="img/${lang}-${i}.jpg" alt="" loading="lazy">`).join("");
+    try { localStorage.setItem("pilou-lang", lang); } catch (e) {}
+  }
+
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+  let saved = null;
+  try { saved = localStorage.getItem("pilou-lang"); } catch (e) {}
+  setLang(saved || ((navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en"));
+</script>
+</body>
+</html>
